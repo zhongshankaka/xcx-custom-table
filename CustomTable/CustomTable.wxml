@@ -1,0 +1,34 @@
+<view>
+  <view class="table-wrapper">
+    <view class='fixed-list {{showFixed?"show":""}} {{fixedCol === FIXED_RIGHT ? "fixed-list-right" : "fixed-list-left"}}' style="width: {{fixedList[0].width}}px;" wx:if="{{data.length > 0}}">
+      <view class='content c-th' style="height: {{topGridData.height}}px; width: {{topGridData.width}}px">{{topGridData.label}}</view>
+      <scroll-view scroll-y scroll-top="{{fixedListTop}}" style="height: {{scrollHeight}}px">
+        <view class="fixed-body">
+          <block wx:for="{{fixedList}}" wx:for-index="idx" wx:key="idx">
+            <view class="fixed-tr">
+              <view class="fixed-td {{fixedCol === FIXED_RIGHT ? 'fixed-td-right' : 'fixed-td-left'}}" style="width:{{item.width}}px; height: {{item.height}}px">
+                <view class='content' style="color: {{columns[fixedColIndex].canLink && data[idx].canLink ? '#00A0EA' : ''}}" data-col="{{columns[fixedColIndex].key}}" data-row="{{data[idx]}}">{{item.data === null ? '' : item.data}}</view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+    <scroll-view class="table" scroll-x bindscroll="showFixList">
+      <view id="thead" class="thead" style='width: {{bodyWidth + 6}}px'>
+        <view class='th {{item.key}}' wx:for="{{columns}}" wx:key="idx" wx:for-index="idx">
+          <view class='content' style="width: {{item.width}}px">{{item.label}}</view>
+        </view>
+      </view>
+      <scroll-view id='table-body' style='width: {{bodyWidth + 6}}px; height: {{scrollHeight}}px' scroll-y  bindscroll="setFixedListPosition" bindscrolltolower="loadMore">
+        <view class="body">
+          <view class='tr' wx:for="{{data}}" wx:for-item="row" wx:for-index="idx" wx:key="idx">
+            <view class='td {{col.key}}' wx:for="{{columns}}" wx:for-item="col" wx:for-index="key" wx:key="key" style="border-bottom: {{ row.hiddenBorderBttmCol === col.key ? 0 : '2rpx solid #eee'}}">
+              <view class='content' style="width: {{col.width}}px; color: {{col.canLink && row.canLink ? '#00A0EA' : ''}}" data-col="{{col.key}}" data-row="{{row}}" catchtap="link">{{row[col.key] === null ? '' : row[col.key]}}</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </scroll-view>
+  </view>
+</view>

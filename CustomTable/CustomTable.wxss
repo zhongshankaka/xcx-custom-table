@@ -1,0 +1,83 @@
+.table-wrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  font-size: 24rpx;
+  width: 100%;
+  text-align: center;
+  line-height: 32rpx;
+}
+
+/* 侧边栏相关 */
+.table-wrapper .fixed-list {
+  position: absolute;
+  z-index: 100;
+  background-color: #fff;
+  display: none;
+  pointer-events: none; /* 禁止滚动固定列 */
+}
+
+.table-wrapper .fixed-list-left {
+  left: 0;
+}
+
+.table-wrapper .fixed-list-right {
+  right: 0;
+}
+
+.table-wrapper .fixed-list.show{
+  display: block;
+}
+
+.table-wrapper .fixed-list .fixed-td {
+  border-bottom: 2rpx solid #eee;
+  display: table-cell;
+  box-sizing: border-box;
+}
+
+.table-wrapper .fixed-list .fixed-td-left {
+  border-right: 2rpx solid #eee;
+}
+
+.table-wrapper .fixed-list .fixed-td-right {
+  border-left: 2rpx solid #eee;
+}
+
+/* 表格 */
+.table {
+  width: 750rpx;
+}
+
+.body, .fixed-body{
+  display: table;
+  width: 100%;
+}
+
+.fixed-tr {
+  width: 100%;
+}
+
+.th, .c-th {
+  background: #f2f2f2;
+  border-bottom: 2rpx solid #f2f2f2;
+  box-sizing: border-box;
+}
+
+.td, .th {
+  border-right: 2rpx solid #eee;
+  display: table-cell;
+  box-sizing: border-box;
+}
+
+.content {
+  box-sizing: border-box;
+  padding: 14rpx 10rpx;
+  word-break: break-all;
+}
+
+::-webkit-scrollbar {
+  display:none;
+  width:0;
+  height:0;
+  color:transparent;
+}
